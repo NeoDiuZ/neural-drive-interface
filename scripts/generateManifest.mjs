@@ -18,13 +18,16 @@ const basePath = isGithubActor ? "" : "/m2w";
 
 // Define the manifest object
 const manifest = {
-  name: "m2w",
-  short_name: "m2w",
+  name: "Neural Drive Interface",
+  short_name: "Neural Drive",
   start_url: `${basePath}/`,
   display: "standalone",
+  background_color: "#0a0a0a",
+  theme_color: "#667eea",
+  description: "Modern assistive communication system with vibrant UI and Bluetooth integration",
   icons: [
-    { src: `${basePath}/Muscle-logo-192x192.png`, sizes: "192x192", type: "image/png" },
-    { src: `${basePath}/Muscle-logo-512x512.png`, sizes: "512x512", type: "image/png" },
+    { src: `${basePath}/chords-logo-192x192.png`, sizes: "192x192", type: "image/png" },
+    { src: `${basePath}/chords-logo-512x512.png`, sizes: "512x512", type: "image/png" },
   ],
   screenshots: [
     { src: `${basePath}/image.png`, sizes: "1280x720", type: "image/png", form_factor: "wide" },
