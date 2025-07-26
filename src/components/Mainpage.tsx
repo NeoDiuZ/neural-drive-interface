@@ -962,9 +962,11 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
     }
   };
 
+  type CategoryKey = keyof typeof iconCategories;
+
   // Filter icons based on search and category
   const getFilteredIcons = () => {
-    let icons = iconCategories[selectedCategory]?.icons || availableIcons;
+    let icons = iconCategories[selectedCategory as CategoryKey]?.icons || availableIcons;
     
     if (searchTerm) {
       icons = icons.filter(icon => 
@@ -1068,7 +1070,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         {/* Icon Selection */}
         <div className="flex-1 min-h-0">
           <p className="text-sm text-center mb-3 opacity-70">
-            {filteredIcons.length} icons in {iconCategories[selectedCategory]?.name || 'All'}
+            {filteredIcons.length} icons in {iconCategories[selectedCategory as CategoryKey]?.name || 'All'}
           </p>
           
           {/* Icon grid */}
