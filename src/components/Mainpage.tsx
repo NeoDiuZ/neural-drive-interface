@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle } from 'lucide-react';
+import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle, Brain, Plus, X, Save, Globe, Heart, Home, Star, Car, Phone, Music, Coffee, Book, Bed, SunIcon, Zap, Camera, Gift, Clock, MapPin, Thermometer, Volume2, Wifi, Battery, Settings, Shield, Lock, Key, Calendar, Mail, MessageCircle, Search, Download, Upload, Edit, Trash2, Copy, Share2, Eye, EyeOff, ChevronLeft, ChevronRight, Play, Pause, Stop, SkipBack, SkipForward, Repeat, Shuffle, Volume, VolumeX, Mic, MicOff, Video, VideoOff, Image, FileText, Folder, Archive, Cloud, Server, Database, Code, Terminal, Cpu, HardDrive, Monitor, Smartphone, Tablet, Laptop, Printer, Keyboard, Mouse, Headphones, Speaker, Gamepad2, Joystick, Trophy, Award, Medal, Flag, Target, Compass, Map, Route, Plane, Train, Bus, Bike, Fuel, Parking, Construction, Tool, Wrench, Hammer, Scissors, Ruler, PaintBucket, Brush, Palette, Pipette, Layers, Square, Circle, Triangle, Hexagon, Star as StarIcon } from 'lucide-react';
 
 interface Option {
   id: string;
@@ -10,6 +10,250 @@ interface Option {
   lightColor: string;
   soundFile: string;
 }
+
+// Language types
+type Language = 'en' | 'ms' | 'ta' | 'zh';
+
+// Translation interface
+interface Translations {
+  en: {
+    appTitle: string;
+    connected: string;
+    disconnected: string;
+    connecting: string;
+    menuActive: string;
+    connect: string;
+    disconnect: string;
+    mainTitle: string;
+    subtitle: string;
+    addCard: string;
+    food: string;
+    help: string;
+    outing: string;
+    television: string;
+    washroom: string;
+    water: string;
+    addCommunicationCard: string;
+    cardName: string;
+    chooseIcon: string;
+    cancel: string;
+    addCardButton: string;
+    pleaseConnect: string;
+    enterLabel: string;
+    bluetoothNotSupported: string;
+    connectionFailed: string;
+    language: string;
+  };
+  ms: {
+    appTitle: string;
+    connected: string;
+    disconnected: string;
+    connecting: string;
+    menuActive: string;
+    connect: string;
+    disconnect: string;
+    mainTitle: string;
+    subtitle: string;
+    addCard: string;
+    food: string;
+    help: string;
+    outing: string;
+    television: string;
+    washroom: string;
+    water: string;
+    addCommunicationCard: string;
+    cardName: string;
+    chooseIcon: string;
+    cancel: string;
+    addCardButton: string;
+    pleaseConnect: string;
+    enterLabel: string;
+    bluetoothNotSupported: string;
+    connectionFailed: string;
+    language: string;
+  };
+  ta: {
+    appTitle: string;
+    connected: string;
+    disconnected: string;
+    connecting: string;
+    menuActive: string;
+    connect: string;
+    disconnect: string;
+    mainTitle: string;
+    subtitle: string;
+    addCard: string;
+    food: string;
+    help: string;
+    outing: string;
+    television: string;
+    washroom: string;
+    water: string;
+    addCommunicationCard: string;
+    cardName: string;
+    chooseIcon: string;
+    cancel: string;
+    addCardButton: string;
+    pleaseConnect: string;
+    enterLabel: string;
+    bluetoothNotSupported: string;
+    connectionFailed: string;
+    language: string;
+  };
+  zh: {
+    appTitle: string;
+    connected: string;
+    disconnected: string;
+    connecting: string;
+    menuActive: string;
+    connect: string;
+    disconnect: string;
+    mainTitle: string;
+    subtitle: string;
+    addCard: string;
+    food: string;
+    help: string;
+    outing: string;
+    television: string;
+    washroom: string;
+    water: string;
+    addCommunicationCard: string;
+    cardName: string;
+    chooseIcon: string;
+    cancel: string;
+    addCardButton: string;
+    pleaseConnect: string;
+    enterLabel: string;
+    bluetoothNotSupported: string;
+    connectionFailed: string;
+    language: string;
+  };
+}
+
+// Translation data
+const translations: Translations = {
+  en: {
+    appTitle: "Neural Drive",
+    connected: "Connected",
+    disconnected: "Disconnected",
+    connecting: "Connecting...",
+    menuActive: "Menu Active",
+    connect: "Connect",
+    disconnect: "Disconnect",
+    mainTitle: "Neural Communication Interface",
+    subtitle: "Express your needs through neural signals with instant audio feedback",
+    addCard: "Add Communication Card",
+    food: "Food",
+    help: "Help",
+    outing: "Outing",
+    television: "Television",
+    washroom: "Washroom",
+    water: "Water",
+    addCommunicationCard: "Add Communication Card",
+    cardName: "Card name...",
+    chooseIcon: "Choose an icon:",
+    cancel: "Cancel",
+    addCardButton: "Add Card",
+    pleaseConnect: "Please connect to NeuralHelp first!",
+    enterLabel: "Please enter a label for the card",
+    bluetoothNotSupported: "Web Bluetooth not supported",
+    connectionFailed: "Connection failed",
+    language: "Language"
+  },
+  ms: {
+    appTitle: "Neural Drive",
+    connected: "Disambung",
+    disconnected: "Terputus",
+    connecting: "Menyambung...",
+    menuActive: "Menu Aktif",
+    connect: "Sambung",
+    disconnect: "Putus",
+    mainTitle: "Antara Muka Komunikasi Neural",
+    subtitle: "Luahkan keperluan anda melalui isyarat neural dengan maklum balas audio segera",
+    addCard: "Tambah Kad Komunikasi",
+    food: "Makanan",
+    help: "Bantuan",
+    outing: "Keluar",
+    television: "Televisyen",
+    washroom: "Bilik Air",
+    water: "Air",
+    addCommunicationCard: "Tambah Kad Komunikasi",
+    cardName: "Nama kad...",
+    chooseIcon: "Pilih ikon:",
+    cancel: "Batal",
+    addCardButton: "Tambah Kad",
+    pleaseConnect: "Sila sambung ke NeuralHelp terlebih dahulu!",
+    enterLabel: "Sila masukkan label untuk kad",
+    bluetoothNotSupported: "Web Bluetooth tidak disokong",
+    connectionFailed: "Sambungan gagal",
+    language: "Bahasa"
+  },
+  ta: {
+    appTitle: "Neural Drive",
+    connected: "இணைக்கப்பட்டது",
+    disconnected: "தொடர்பு துண்டிக்கப்பட்டது",
+    connecting: "இணைக்கிறது...",
+    menuActive: "மெனு செயலில்",
+    connect: "இணை",
+    disconnect: "துண்டி",
+    mainTitle: "நரம்பு தொடர்பு இடைமுகம்",
+    subtitle: "நரம்பு சமிக்ஞைகள் மூலம் உங்கள் தேவைகளை உடனடி ஆடியோ பின்னூட்டத்துடன் வெளிப்படுத்துங்கள்",
+    addCard: "தொடர்பு அட்டை சேர்",
+    food: "உணவு",
+    help: "உதவி",
+    outing: "வெளியே செல்",
+    television: "தொலைக்காட்சி",
+    washroom: "கழிப்பறை",
+    water: "தண்ணீர்",
+    addCommunicationCard: "தொடர்பு அட்டை சேர்",
+    cardName: "அட்டையின் பெயர்...",
+    chooseIcon: "ஒரு ஐகான் தேர்வு:",
+    cancel: "ரத்து",
+    addCardButton: "அட்டை சேர்",
+    pleaseConnect: "முதலில் NeuralHelp உடன் இணைக்கவும்!",
+    enterLabel: "அட்டைக்கு ஒரு லேபிள் உள்ளிடவும்",
+    bluetoothNotSupported: "வெப் புளூடூத் ஆதரிக்கப்படவில்லை",
+    connectionFailed: "இணைப்பு தோல்வி",
+    language: "மொழி"
+  },
+  zh: {
+    appTitle: "神经驱动",
+    connected: "已连接",
+    disconnected: "已断开",
+    connecting: "连接中...",
+    menuActive: "菜单激活",
+    connect: "连接",
+    disconnect: "断开",
+    mainTitle: "神经通信界面",
+    subtitle: "通过神经信号表达您的需求，获得即时音频反馈",
+    addCard: "添加通信卡",
+    food: "食物",
+    help: "帮助",
+    outing: "外出",
+    television: "电视",
+    washroom: "洗手间",
+    water: "水",
+    addCommunicationCard: "添加通信卡",
+    cardName: "卡片名称...",
+    chooseIcon: "选择图标:",
+    cancel: "取消",
+    addCardButton: "添加卡片",
+    pleaseConnect: "请先连接到NeuralHelp!",
+    enterLabel: "请为卡片输入标签",
+    bluetoothNotSupported: "不支持Web蓝牙",
+    connectionFailed: "连接失败",
+    language: "语言"
+  }
+};
+
+// Language options
+const languageOptions = [
+  { code: 'en' as Language, name: 'English', flag: '🇺🇸' },
+  { code: 'ms' as Language, name: 'Bahasa Melayu', flag: '🇲🇾' },
+  { code: 'ta' as Language, name: 'தமிழ்', flag: '🇮🇳' },
+  { code: 'zh' as Language, name: '中文', flag: '🇨🇳' }
+];
+
 // Define types for Bluetooth objects
 interface BluetoothDevice extends EventTarget {
   gatt?: BluetoothRemoteGATTServer;
@@ -41,66 +285,173 @@ interface BluetoothRemoteGATTCharacteristic extends EventTarget {
   readValue(): Promise<DataView>;
   value?: DataView;
 }
+
 const CommunicationInterface: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+
+  // Initialize language from localStorage
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('neuralDriveLanguage') as Language;
+    if (savedLanguage && languageOptions.find(lang => lang.code === savedLanguage)) {
+      setCurrentLanguage(savedLanguage);
+    }
+  }, []);
+
+  // Save language to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('neuralDriveLanguage', currentLanguage);
+    // Update document language attribute
+    document.documentElement.lang = currentLanguage;
+  }, [currentLanguage]);
   const [isConnected, setIsConnected] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [device, setDevice] = useState<BluetoothDevice | null>(null);
   const [activeSelection, setActiveSelection] = useState<string | null>(null);
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
   const [menuActive, setMenuActive] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [showAddCard, setShowAddCard] = useState(false);
+  const connectedDeviceRef = useRef<BluetoothDevice | null>(null);
 
-  // Memoize options to prevent unnecessary re-renders
-  const options: Option[] = useMemo(() => [
+  // Get current translations
+  const t = translations[currentLanguage];
+
+  // Default options - now with multilingual support
+  const getDefaultOptions = useCallback((): Option[] => [
     {
       id: 'food',
-      label: 'Food',
-      icon: <Utensils size={52} strokeWidth={1.5} />,
+      label: t.food,
+      icon: <Utensils size={40} strokeWidth={1.5} />,
       color: 'bg-orange-500',
       lightColor: 'bg-orange-400',
       soundFile: 'food.mp3'
     },
     {
       id: 'help',
-      label: 'Help',
-      icon: <HelpCircle size={52} strokeWidth={1.5} />,
+      label: t.help,
+      icon: <HelpCircle size={40} strokeWidth={1.5} />,
       color: 'bg-red-500',
       lightColor: 'bg-red-400',
       soundFile: 'help.mp3'
     },
     {
       id: 'outing',
-      label: 'Outing',
-      icon: <Users size={52} strokeWidth={1.5} />,
+      label: t.outing,
+      icon: <Users size={40} strokeWidth={1.5} />,
       color: 'bg-blue-500',
       lightColor: 'bg-blue-400',
       soundFile: 'outing.mp3'
     },
     {
       id: 'television',
-      label: 'Television',
-      icon: <div className="text-4xl">📺</div>,
+      label: t.television,
+      icon: <div className="text-3xl">📺</div>,
       color: 'bg-indigo-500',
       lightColor: 'bg-indigo-400',
       soundFile: 'television.mp3'
     },
     {
       id: 'washroom',
-      label: 'Washroom',
-      icon: <Navigation size={52} strokeWidth={1.5} />,
+      label: t.washroom,
+      icon: <Navigation size={40} strokeWidth={1.5} />,
       color: 'bg-purple-500',
       lightColor: 'bg-purple-400',
       soundFile: 'washroom.mp3'
     },
     {
       id: 'water',
-      label: 'Water',
-      icon: <Droplets size={52} strokeWidth={1.5} />,
+      label: t.water,
+      icon: <Droplets size={40} strokeWidth={1.5} />,
       color: 'bg-cyan-500',
       lightColor: 'bg-cyan-400',
       soundFile: 'water.mp3'
     }
-  ], []);
+  ], [t]);
+
+  // Dynamic options state
+  const [options, setOptions] = useState<Option[]>([]);
+
+  // Update options when language changes
+  useEffect(() => {
+    const defaultOptions = getDefaultOptions();
+    setOptions(prev => {
+      // Update default cards with new translations, keep custom cards
+      const customCards = prev.filter(option => option.id.startsWith('custom-'));
+      return [...defaultOptions, ...customCards];
+    });
+  }, [getDefaultOptions]);
+
+  // Available icons for new cards
+  const availableIcons = [
+    // Basic needs
+    { name: 'Food', icon: <Utensils size={40} strokeWidth={1.5} /> },
+    { name: 'Water', icon: <Droplets size={40} strokeWidth={1.5} /> },
+    { name: 'Coffee', icon: <Coffee size={40} strokeWidth={1.5} /> },
+    { name: 'Help', icon: <HelpCircle size={40} strokeWidth={1.5} /> },
+    
+    // People & Social
+    { name: 'People', icon: <Users size={40} strokeWidth={1.5} /> },
+    { name: 'Family', icon: <div className="text-3xl">👨‍👩‍👧‍👦</div> },
+    { name: 'Doctor', icon: <div className="text-3xl">👨‍⚕️</div> },
+    
+    // Places
+    { name: 'Home', icon: <Home size={40} strokeWidth={1.5} /> },
+    { name: 'Hospital', icon: <div className="text-3xl">🏥</div> },
+    { name: 'Location', icon: <MapPin size={40} strokeWidth={1.5} /> },
+    
+    // Transportation
+    { name: 'Car', icon: <Car size={40} strokeWidth={1.5} /> },
+    { name: 'Plane', icon: <Plane size={40} strokeWidth={1.5} /> },
+    { name: 'Bus', icon: <Bus size={40} strokeWidth={1.5} /> },
+    { name: 'Bike', icon: <Bike size={40} strokeWidth={1.5} /> },
+    
+    // Communication
+    { name: 'Phone', icon: <Phone size={40} strokeWidth={1.5} /> },
+    { name: 'Message', icon: <MessageCircle size={40} strokeWidth={1.5} /> },
+    { name: 'Speak', icon: <Mic size={40} strokeWidth={1.5} /> },
+    
+    // Entertainment
+    { name: 'Music', icon: <Music size={40} strokeWidth={1.5} /> },
+    { name: 'Game', icon: <Gamepad2 size={40} strokeWidth={1.5} /> },
+    { name: 'Play', icon: <Play size={40} strokeWidth={1.5} /> },
+    
+    // Health & Emotions
+    { name: 'Medicine', icon: <div className="text-3xl">💊</div> },
+    { name: 'Pain', icon: <div className="text-3xl">😣</div> },
+    { name: 'Happy', icon: <div className="text-3xl">😊</div> },
+    { name: 'Sad', icon: <div className="text-3xl">😢</div> },
+    { name: 'Tired', icon: <div className="text-3xl">😴</div> },
+    
+    // Activities
+    { name: 'Sleep', icon: <Bed size={40} strokeWidth={1.5} /> },
+    { name: 'Work', icon: <div className="text-3xl">💼</div> },
+    { name: 'Study', icon: <Book size={40} strokeWidth={1.5} /> },
+    { name: 'Exercise', icon: <div className="text-3xl">🏃</div> },
+    
+    // Objects & Tools
+    { name: 'Clock', icon: <Clock size={40} strokeWidth={1.5} /> },
+    { name: 'Key', icon: <Key size={40} strokeWidth={1.5} /> },
+    { name: 'Camera', icon: <Camera size={40} strokeWidth={1.5} /> },
+    { name: 'Gift', icon: <Gift size={40} strokeWidth={1.5} /> },
+    
+    // Weather & Environment
+    { name: 'Sun', icon: <SunIcon size={40} strokeWidth={1.5} /> },
+    { name: 'Cold', icon: <div className="text-3xl">❄️</div> },
+    { name: 'Rain', icon: <div className="text-3xl">🌧️</div> },
+    { name: 'Temperature', icon: <Thermometer size={40} strokeWidth={1.5} /> },
+    
+    // Generic/Important
+    { name: 'Heart', icon: <Heart size={40} strokeWidth={1.5} /> },
+    { name: 'Star', icon: <Star size={40} strokeWidth={1.5} /> },
+    { name: 'Emergency', icon: <Zap size={40} strokeWidth={1.5} /> },
+    { name: 'Important', icon: <div className="text-3xl">⚠️</div> }
+  ];
+
+  // Available colors for new cards - simplified to just one default
+  const defaultColor = { name: 'Blue', color: 'bg-blue-500', lightColor: 'bg-blue-400' };
 
   const playSound = useCallback((soundFile: string) => {
     try {
@@ -113,82 +464,65 @@ const CommunicationInterface: React.FC = () => {
       console.log('Audio creation failed:', error);
     }
   }, []);
+
   const handleNotifications = useCallback((event: Event) => {
     const target = event.target as BluetoothRemoteGATTCharacteristic;
     const value = target.value;
     if (!value) return;
 
-    // Convert DataView to Uint8Array
     const data = new Uint8Array(value.buffer);
 
-    // Handle different notification types based on your ESP32 code
     if (data.length === 1) {
-      // Menu state change (0 = off, 127 = timeout)
       if (data[0] === 0) {
-        // Menu activated
         setMenuActive(true);
-        setCurrentMenuIndex(1); // Start with first option
+        setCurrentMenuIndex(1);
         setActiveSelection(null);
       } else if (data[0] === 127) {
-        // Menu timed out
         setMenuActive(false);
         setCurrentMenuIndex(0);
         setActiveSelection(null);
       }
     } else if (data.length === 2) {
-      // Menu selection change
       if (data[0] === 'S'.charCodeAt(0)) {
-        // 'S' for selection change
         const newIndex = data[1];
         setMenuActive(true);
         setCurrentMenuIndex(newIndex);
-        setActiveSelection(null); // Clear active selection when navigating
-        // Play navigation tone with pitch based on position
+        setActiveSelection(null);
       } else if (data[0] === 'A'.charCodeAt(0)) {
-        // 'A' for activation/selection
         const selectedIndex = data[1];
+        // Make sure we don't exceed the current options array length
         if (selectedIndex > 0 && selectedIndex <= options.length) {
           const optionId = options[selectedIndex - 1].id;
           setSelectedOption(optionId);
-          setActiveSelection(optionId); // Set as active selection
-          playSound(options[selectedIndex - 1].soundFile); // Play the full sound file
-          // Reset after sound plays (optional)
+          setActiveSelection(optionId);
+          playSound(options[selectedIndex - 1].soundFile);
           setTimeout(() => {
             setActiveSelection(null);
           }, 3000);
         }
       }
     }
-  }, [options, playSound]);
+  }, [options, playSound]); // Add options to dependency array
 
-
-  // Handle menu index changes
   useEffect(() => {
     if (menuActive && currentMenuIndex > 0 && currentMenuIndex <= options.length) {
-      // Highlight the current menu option
       const optionId = options[currentMenuIndex - 1].id;
       setSelectedOption(optionId);
       playSound("select.mp3");
     } else if (!menuActive) {
       setSelectedOption(null);
     }
-  }, [currentMenuIndex, menuActive, options, playSound]);
+  }, [currentMenuIndex, menuActive, options, playSound]); // Add options to dependency array
 
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [connectionError, setConnectionError] = useState<string | null>(null);
-  const connectedDeviceRef = useRef<BluetoothDevice | null>(null);
-
-  // Then modify your connection handling code
   const connectToDevice = useCallback(async () => {
     try {
       setIsConnecting(true);
       setConnectionError(null);
 
       if (!navigator.bluetooth || !navigator.bluetooth.requestDevice) {
-        throw new Error('Web Bluetooth not supported');
+        throw new Error(t.bluetoothNotSupported);
       }
 
-      console.log('Requesting Bluetooth Device...');
       const device = await navigator.bluetooth.requestDevice({
         filters: [{ name: 'ESP32C6_EEG' }],
         optionalServices: ['6910123a-eb0d-4c35-9a60-bebe1dcb549d']
@@ -202,13 +536,8 @@ const CommunicationInterface: React.FC = () => {
 
       device.addEventListener('gattserverdisconnected', handleDisconnection);
 
-      console.log('Connecting to GATT Server...');
       const server = await device.gatt.connect();
-
-      console.log('Getting Service...');
       const service = await server.getPrimaryService('6910123a-eb0d-4c35-9a60-bebe1dcb549d');
-
-      console.log('Getting Characteristic...');
       const characteristic = await service.getCharacteristic('5f4f1107-7fc1-43b2-a540-0aa1a9f1ce78');
 
       await characteristic.startNotifications();
@@ -218,30 +547,25 @@ const CommunicationInterface: React.FC = () => {
       setIsConnected(true);
       setIsConnecting(false);
 
-      console.log('Successfully connected');
       return true;
     } catch (error) {
       console.error('Connection failed:', error);
       setIsConnecting(false);
       setIsConnected(false);
-      setConnectionError(error instanceof Error ? error.message : 'Connection failed');
+      setConnectionError(error instanceof Error ? error.message : t.connectionFailed);
       return false;
     }
-  }, [handleNotifications]);
-  // Simplified disconnection handler - no reconnection attempts
+  }, [handleNotifications, t]);
+
   const handleDisconnection = useCallback(() => {
-    console.log('Device disconnected');
     setIsConnected(false);
     setMenuActive(false);
     setCurrentMenuIndex(0);
-    // No reconnection logic here
   }, []);
 
-  // Disconnect function remains similar but without reconnection concerns
   const disconnectDevice = useCallback(async () => {
     try {
       if (!connectedDeviceRef.current) {
-        console.log("No connected device to disconnect.");
         return;
       }
 
@@ -256,7 +580,6 @@ const CommunicationInterface: React.FC = () => {
         return;
       }
 
-      // Add await to these asynchronous operations
       const service = await server.getPrimaryService("6910123a-eb0d-4c35-9a60-bebe1dcb549d");
       const dataChar = await service.getCharacteristic("5f4f1107-7fc1-43b2-a540-0aa1a9f1ce78");
 
@@ -274,6 +597,7 @@ const CommunicationInterface: React.FC = () => {
       setCurrentMenuIndex(0);
     }
   }, [handleNotifications]);
+
   const toggleConnection = async () => {
     if (isConnected) {
       disconnectDevice();
@@ -282,22 +606,9 @@ const CommunicationInterface: React.FC = () => {
     }
   };
 
-  // Update the connection status UI to show connecting state
-  const connectionStatusText = () => {
-    if (isConnected) return 'Connected';
-    if (device && !isConnected) return 'Connecting...';
-    return 'Disconnected';
-  };
-
-  const connectionStatusIcon = () => {
-    if (isConnected) return <WifiOff size={20} className="text-green-400" />;
-    if (device && !isConnected) return <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />;
-    return <WifiOff size={20} className="text-red-400" />;
-  };
-
   const handleOptionClick = (option: Option) => {
     if (!isConnected) {
-      alert('Please connect first!');
+      alert(t.pleaseConnect);
       return;
     }
 
@@ -305,146 +616,243 @@ const CommunicationInterface: React.FC = () => {
     playSound(option.soundFile);
   };
 
-
-
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Enhanced theme classes with glassmorphism
-  const themeClasses = {
-    background: isDarkMode
-      ? 'bg-slate-900'
-      : 'bg-gray-50',
-    text: isDarkMode ? 'text-white' : 'text-slate-800',
-    cardBg: isDarkMode
-      ? 'bg-white/10 backdrop-blur-xl border-white/20'
-      : 'bg-white/70 backdrop-blur-xl border-white/30 shadow-xl',
-    cardHover: isDarkMode
-      ? 'hover:bg-white/20 hover:border-white/30'
-      : 'hover:bg-white/80 hover:border-white/50',
-    textSecondary: isDarkMode ? 'text-slate-300' : 'text-slate-600',
-    textMuted: isDarkMode ? 'text-slate-400' : 'text-slate-500',
-    glassBg: isDarkMode
-      ? 'bg-white/5 backdrop-blur-2xl border border-white/10'
-      : 'bg-white/60 backdrop-blur-2xl border border-white/20 shadow-lg'
+  // Language selection handler
+  const handleLanguageChange = (language: Language) => {
+    setCurrentLanguage(language);
+    setShowLanguageDropdown(false);
+  };
+
+  // Add new card functionality
+  const addNewCard = (newCard: Omit<Option, 'id'>) => {
+    const id = `custom-${Date.now()}`;
+    const cardWithId: Option = { ...newCard, id };
+    setOptions(prev => [...prev, cardWithId]);
+    setShowAddCard(false);
+  };
+
+  // Remove card functionality
+  const removeCard = (cardId: string) => {
+    setOptions(prev => prev.filter(option => option.id !== cardId));
+    // Reset selection if the removed card was selected
+    if (selectedOption === cardId) {
+      setSelectedOption(null);
+    }
   };
 
   return (
-    <div className={`min-h-screen p-4 md:p-6 transition-all duration-700 ${themeClasses.background} ${themeClasses.text} relative overflow-hidden`}>
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className={`absolute -top-40 -right-40 w-80 h-80 rounded-full ${isDarkMode ? 'bg-purple-500/20' : 'bg-blue-200/30'} blur-3xl animate-pulse`}></div>
-        <div className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full ${isDarkMode ? 'bg-blue-500/20' : 'bg-purple-200/30'} blur-3xl animate-pulse`} style={{ animationDelay: '2s' }}></div>
-        <div className={`absolute top-1/2 left-1/2 w-60 h-60 rounded-full ${isDarkMode ? 'bg-pink-500/10' : 'bg-pink-200/20'} blur-3xl animate-pulse`} style={{ animationDelay: '4s' }}></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Modern Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
-          <div className="flex items-center space-x-4">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-black text-purple-400">
-                Neural Drive
-              </h1>
-              <p className={`text-sm ${themeClasses.textMuted} font-medium`}>
-                Assistive Communication
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-3">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className={`p-3 rounded-2xl ${themeClasses.glassBg} hover:scale-110 transition-all duration-300 group`}
-            >
-              {isDarkMode ?
-                <Sun size={20} className="text-yellow-400 group-hover:rotate-180 transition-transform duration-500" /> :
-                <Moon size={20} className="text-slate-600 group-hover:rotate-180 transition-transform duration-500" />
-              }
-            </button>
-
-            {/* Connection Status */}
-            <div className={`flex items-center space-x-3 px-4 py-3 rounded-2xl ${themeClasses.glassBg} ring-2 ${isConnected ? 'ring-green-400/50' : device && !isConnected ? 'ring-blue-400/50' : 'ring-red-400/50'} transition-all duration-300`}>
-              <div className="relative">
-                {connectionStatusIcon()}
-              </div>
-              <span className="font-semibold text-sm">
-                {connectionStatusText()}
-              </span>
-              {menuActive && (
-                <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">
-                  Menu Active
-                </span>
-              )}
-            </div>
-
+    <div className={`min-h-screen ${isDarkMode ? 'bg-slate-900' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'}`}>
+      {/* Header */}
+      <header className={`border-b backdrop-blur-sm sticky top-0 z-50 ${isDarkMode ? 'border-gray-700 bg-slate-900/80' : 'border-gray-200 bg-white/80'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg">
+                <Brain className="h-6 w-6 text-white" />
+              </div>
+              <span className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{t.appTitle}</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Connection Status */}
+              <div className={`flex items-center space-x-3 px-4 py-2 rounded-lg border ${
+                isConnected 
+                  ? 'border-green-400 bg-green-50 text-green-700' 
+                  : isDarkMode 
+                    ? 'border-red-400 bg-red-950 text-red-400'
+                    : 'border-red-400 bg-red-50 text-red-700'
+              }`}>
+                <div className="relative">
+                  {isConnected ? (
+                    <WifiOff size={16} className="text-green-500" />
+                  ) : isConnecting ? (
+                    <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <WifiOff size={16} className="text-red-400" />
+                  )}
+                </div>
+                <span className="font-medium text-sm">
+                  {isConnected ? t.connected : isConnecting ? t.connecting : t.disconnected}
+                </span>
+                {menuActive && (
+                  <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">
+                    {t.menuActive}
+                  </span>
+                )}
+              </div>
+
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all ${
+                    isDarkMode 
+                      ? 'border-gray-600 bg-gray-700 hover:bg-gray-600 text-white' 
+                      : 'border-gray-300 bg-white hover:bg-gray-50 text-gray-900'
+                  }`}
+                >
+                  <Globe size={16} />
+                  <span className="text-sm">{languageOptions.find(lang => lang.code === currentLanguage)?.flag}</span>
+                  <span className="text-xs">▼</span>
+                </button>
+
+                {showLanguageDropdown && (
+                  <div className={`absolute top-full right-0 mt-2 min-w-48 rounded-lg border shadow-lg z-50 ${
+                    isDarkMode 
+                      ? 'bg-gray-800 border-gray-600' 
+                      : 'bg-white border-gray-200'
+                  }`}>
+                    {languageOptions.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:transition-all ${
+                          currentLanguage === lang.code
+                            ? isDarkMode 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-blue-50 text-blue-700'
+                            : isDarkMode 
+                              ? 'hover:bg-gray-700 text-gray-200' 
+                              : 'hover:bg-gray-50 text-gray-900'
+                        } ${lang === languageOptions[0] ? 'rounded-t-lg' : ''} ${lang === languageOptions[languageOptions.length - 1] ? 'rounded-b-lg' : ''}`}
+                      >
+                        <span className="text-lg">{lang.flag}</span>
+                        <span className="text-sm font-medium">{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Connect Button */}
               <button
                 onClick={toggleConnection}
                 disabled={isConnecting}
-                className={`px-6 py-3 rounded-2xl font-bold transition-all ${isConnected
-                  ? 'bg-red-500 hover:bg-red-600'
-                  : 'bg-green-500 hover:bg-green-600'
-                  } text-white shadow-lg ${isConnecting ? 'opacity-75' : ''}`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  isConnected
+                    ? 'bg-red-500 hover:bg-red-600 text-white'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                } ${isConnecting ? 'opacity-75' : ''}`}
               >
                 {isConnecting ? (
                   <span className="flex items-center">
                     <span className="animate-spin mr-2">↻</span>
-                    Connecting...
+                    {t.connecting}
                   </span>
                 ) : isConnected ? (
-                  'Disconnect'
+                  t.disconnect
                 ) : (
-                  'Connect'
+                  t.connect
                 )}
               </button>
 
-              {connectionError && (
-                <div className="text-red-500 text-sm max-w-xs">
-                  {connectionError}
-                </div>
-              )}
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}
+              >
+                {isDarkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-gray-600" />}
+              </button>
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Options Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
+      {/* Click outside to close language dropdown */}
+      {showLanguageDropdown && (
+        <div 
+          className="fixed inset-0 z-40" 
+          onClick={() => setShowLanguageDropdown(false)}
+        />
+      )}
+
+      {/* Main Interface */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-8">
+          <h1 className={`text-3xl sm:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            {t.mainTitle}
+          </h1>
+          <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            {t.subtitle}
+          </p>
+        </div>
+
+        {connectionError && (
+          <div className="mb-6 text-center">
+            <div className="inline-block bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm">
+              {connectionError}
+            </div>
+          </div>
+        )}
+
+        {/* Add Card Button */}
+        <div className="flex justify-center mb-6">
+          <button
+            onClick={() => setShowAddCard(true)}
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg border-2 border-dashed transition-all ${
+              isDarkMode 
+                ? 'border-gray-600 text-gray-300 hover:border-gray-500 hover:text-white' 
+                : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-900'
+            }`}
+          >
+            <Plus size={20} />
+            <span>{t.addCard}</span>
+          </button>
+        </div>
+
+        {/* Communication Options Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           {options.map((option, index) => {
             const isSelected = selectedOption === option.id;
             const isCurrentMenuOption = menuActive && currentMenuIndex === index + 1;
+            const isCustomCard = option.id.startsWith('custom-');
 
             return (
               <div
                 key={option.id}
-                onClick={() => handleOptionClick(option)}
                 className={`
-                  relative group cursor-pointer transition-all duration-500 transform
-                  ${themeClasses.cardBg} ${themeClasses.cardHover} hover:scale-105 hover:shadow-2xl
-                  rounded-3xl p-6 md:p-8 border-2
-                  ${isSelected ? 'border-green-400 bg-green-500/20 scale-105' : 'border-transparent'}
+                  relative group cursor-pointer transition-all duration-300 transform
+                  ${isDarkMode ? 'bg-slate-800 border-slate-600' : 'bg-white border-gray-200'}
+                  hover:scale-105 hover:shadow-lg rounded-xl p-6 border-2
+                  ${isSelected ? 'border-green-400 bg-green-50' : ''}
                   ${isCurrentMenuOption ? 'ring-4 ring-purple-400/50' : ''}
                   ${!isConnected ? 'opacity-50 cursor-not-allowed' : ''}
-                     ${activeSelection === option.id ? '!bg-green-500/30 border-green-400 scale-105' : ''}
-              ${isCurrentMenuOption ? 'ring-4 ring-purple-400/50' : ''}
+                  ${activeSelection === option.id ? '!bg-green-500/30 border-green-400 scale-105' : ''}
                 `}
               >
-                <div className="flex flex-col items-center space-y-4">
+                {/* Remove button for custom cards */}
+                {isCustomCard && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeCard(option.id);
+                    }}
+                    className="absolute -top-2 -left-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+
+                <div onClick={() => handleOptionClick(option)} className="flex flex-col items-center space-y-4">
                   <div className={`
-                    p-4 rounded-2xl transition-all duration-500 group-hover:rotate-12
-                    ${isDarkMode ? 'bg-white/10 backdrop-blur-sm' : 'bg-white/50 backdrop-blur-sm'}
-                    ${isSelected ? 'bg-green-400/30' : ''}
-                    ${isCurrentMenuOption ? 'bg-purple-400/30' : ''}
-                    
+                    p-4 rounded-lg transition-all duration-300 group-hover:scale-110
+                    ${isDarkMode ? 'bg-slate-700' : 'bg-gray-50'}
+                    ${isSelected ? 'bg-green-100' : ''}
+                    ${isCurrentMenuOption ? 'bg-purple-100' : ''}
                   `}>
-                    <div className={`transition-all duration-300 ${isDarkMode ? 'text-white' : 'text-slate-700'} ${isSelected ? 'text-green-400' : ''} ${isCurrentMenuOption ? 'text-purple-400' : ''}`}>
+                    <div className={`transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-gray-700'
+                    } ${isSelected ? 'text-green-600' : ''} ${isCurrentMenuOption ? 'text-purple-600' : ''}`}>
                       {option.icon}
                     </div>
                   </div>
 
-                  <h3 className={`text-lg md:text-xl font-bold text-center transition-all duration-300 ${isSelected ? 'text-green-400' : ''} ${isCurrentMenuOption ? 'text-purple-400' : ''}`}>
+                  <h3 className={`text-lg font-semibold text-center transition-all duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  } ${isSelected ? 'text-green-600' : ''} ${isCurrentMenuOption ? 'text-purple-600' : ''}`}>
                     {option.label}
                   </h3>
 
@@ -464,28 +872,278 @@ const CommunicationInterface: React.FC = () => {
             );
           })}
         </div>
+      </main>
 
-        {/* Instructions */}
-        <div className="mt-6 sm:mt-5 md:mt-50 text-center">
-          <h3 className={`text-xl font-bold mb-6 ${themeClasses.textSecondary}`}>
-            How It Works
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[
-              { step: '01', title: 'Connect', desc: 'Connect to the NeuralHelp.', color: 'bg-blue-500' },
-              { step: '02', title: 'Activate Menu', desc: 'Double blink to activate the menu.', color: 'bg-purple-500' },
-              { step: '03', title: 'Switch Option', desc: 'Double blink to switch between the options.', color: 'bg-yellow-500' },
-              { step: '04', title: 'Select', desc: 'Focus to choose the selected option.', color: 'bg-pink-500' }
-            ].map((item, index) => (
-              <div key={index} className={`${themeClasses.glassBg} p-6 rounded-3xl group hover:scale-105 transition-all duration-300`}>
-                <div className={`w-12 h-12 rounded-2xl ${item.color} flex items-center justify-center mb-4 mx-auto group-hover:rotate-12 transition-transform duration-300`}>
-                  <span className="text-white font-black text-lg">{item.step}</span>
+      {/* Add Card Modal */}
+      {showAddCard && (
+        <AddCardModal
+          isDarkMode={isDarkMode}
+          availableIcons={availableIcons}
+          onSave={addNewCard}
+          onCancel={() => setShowAddCard(false)}
+          translations={t}
+        />
+      )}
+    </div>
+  );
+};
+
+// Add Card Modal Component
+interface AddCardModalProps {
+  isDarkMode: boolean;
+  availableIcons: Array<{ name: string; icon: React.ReactNode }>;
+  onSave: (card: Omit<Option, 'id'>) => void;
+  onCancel: () => void;
+  translations: Translations['en'];
+}
+
+const AddCardModal: React.FC<AddCardModalProps> = ({
+  isDarkMode,
+  availableIcons,
+  onSave,
+  onCancel,
+  translations: t
+}) => {
+  const [label, setLabel] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState(availableIcons[0]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Categorize icons
+  const iconCategories = {
+    all: { name: 'All', icons: availableIcons },
+    basic: { 
+      name: 'Basic Needs', 
+      icons: availableIcons.filter(icon => 
+        ['Food', 'Water', 'Coffee', 'Help'].includes(icon.name)
+      )
+    },
+    people: { 
+      name: 'People & Social', 
+      icons: availableIcons.filter(icon => 
+        ['People', 'Family', 'Doctor', 'Phone', 'Message', 'Speak'].includes(icon.name)
+      )
+    },
+    places: { 
+      name: 'Places', 
+      icons: availableIcons.filter(icon => 
+        ['Home', 'Hospital', 'Location'].includes(icon.name)
+      )
+    },
+    transport: { 
+      name: 'Transport', 
+      icons: availableIcons.filter(icon => 
+        ['Car', 'Plane', 'Bus', 'Bike'].includes(icon.name)
+      )
+    },
+    health: { 
+      name: 'Health & Emotions', 
+      icons: availableIcons.filter(icon => 
+        ['Medicine', 'Pain', 'Happy', 'Sad', 'Tired'].includes(icon.name)
+      )
+    },
+    activities: { 
+      name: 'Activities', 
+      icons: availableIcons.filter(icon => 
+        ['Sleep', 'Work', 'Study', 'Exercise', 'Music', 'Game', 'Play'].includes(icon.name)
+      )
+    },
+    objects: { 
+      name: 'Objects & Tools', 
+      icons: availableIcons.filter(icon => 
+        ['Clock', 'Key', 'Camera', 'Gift'].includes(icon.name)
+      )
+    },
+    weather: { 
+      name: 'Weather & Environment', 
+      icons: availableIcons.filter(icon => 
+        ['Sun', 'Cold', 'Rain', 'Temperature'].includes(icon.name)
+      )
+    },
+    important: { 
+      name: 'Important', 
+      icons: availableIcons.filter(icon => 
+        ['Heart', 'Star', 'Emergency', 'Important'].includes(icon.name)
+      )
+    }
+  };
+
+  // Filter icons based on search and category
+  const getFilteredIcons = () => {
+    let icons = iconCategories[selectedCategory]?.icons || availableIcons;
+    
+    if (searchTerm) {
+      icons = icons.filter(icon => 
+        icon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return icons;
+  };
+
+  const filteredIcons = getFilteredIcons();
+
+  const handleSave = () => {
+    if (!label.trim()) {
+      alert(t.enterLabel);
+      return;
+    }
+
+    onSave({
+      label: label.trim(),
+      icon: selectedIcon.icon,
+      color: 'bg-blue-500',
+      lightColor: 'bg-blue-400',
+      soundFile: 'select.mp3'
+    });
+  };
+
+  return (
+    <div className={`fixed inset-0 flex items-center justify-center z-50 p-4 ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/80'} backdrop-blur-sm`}>
+      <div className={`${isDarkMode ? 'bg-slate-800 text-white border-slate-600' : 'bg-white text-gray-900 border-gray-200'} rounded-xl p-6 w-[480px] border-2 shadow-xl max-h-[90vh] overflow-hidden flex flex-col`}>
+        <h2 className="text-lg font-bold mb-4 text-center">{t.addCommunicationCard}</h2>
+        
+        {/* Label Input */}
+        <div className="mb-6">
+          <input
+            type="text"
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+            className={`w-full px-3 py-3 border rounded-lg text-center text-lg ${
+              isDarkMode 
+                ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' 
+                : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+            }`}
+            placeholder={t.cardName}
+          />
+        </div>
+
+        {/* Selected Icon Preview */}
+        <div className="mb-6">
+          <p className="text-sm text-center mb-3 opacity-70">Selected Icon:</p>
+          <div className="flex justify-center">
+            <div className={`p-6 rounded-xl border-2 border-blue-500 ${
+              isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'
+            }`}>
+              <div className="flex flex-col items-center space-y-2">
+                <div className="flex items-center justify-center">
+                  {React.cloneElement(selectedIcon.icon as React.ReactElement, { size: 48 })}
                 </div>
-                <div className="font-bold text-lg mb-2">{item.title}</div>
-                <div className={`text-sm ${themeClasses.textMuted}`}>{item.desc}</div>
+                <span className="text-sm font-medium text-blue-600">{selectedIcon.name}</span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="mb-4">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className={`w-full px-3 py-2 border rounded-lg text-sm ${
+              isDarkMode 
+                ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' 
+                : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+            }`}
+            placeholder="Search icons..."
+          />
+        </div>
+
+        {/* Category Tabs */}
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-1 max-h-20 overflow-y-auto">
+            {Object.entries(iconCategories).map(([key, category]) => (
+              <button
+                key={key}
+                onClick={() => setSelectedCategory(key)}
+                className={`px-3 py-1 rounded-lg text-xs transition-all ${
+                  selectedCategory === key
+                    ? 'bg-blue-600 text-white'
+                    : isDarkMode
+                      ? 'bg-slate-700 text-gray-300 hover:bg-slate-600'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category.name} ({category.icons.length})
+              </button>
             ))}
           </div>
+        </div>
+
+        {/* Icon Selection */}
+        <div className="flex-1 min-h-0">
+          <p className="text-sm text-center mb-3 opacity-70">
+            {filteredIcons.length} icons in {iconCategories[selectedCategory]?.name || 'All'}
+          </p>
+          
+          {/* Icon grid */}
+          <div className="grid grid-cols-6 gap-3 max-h-64 overflow-y-auto p-2 border rounded-lg bg-opacity-50" style={{
+            backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.3)' : 'rgba(248, 250, 252, 0.5)'
+          }}>
+            {filteredIcons.map((iconOption, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedIcon(iconOption)}
+                className={`p-3 rounded-lg border-2 transition-all hover:scale-110 group relative ${
+                  selectedIcon.name === iconOption.name
+                    ? 'border-blue-500 bg-blue-50 scale-105 shadow-lg'
+                    : isDarkMode
+                      ? 'border-slate-600 hover:border-slate-400 hover:bg-slate-700'
+                      : 'border-gray-200 hover:border-gray-400 hover:bg-gray-50'
+                }`}
+                title={iconOption.name}
+              >
+                <div className="flex items-center justify-center">
+                  {React.cloneElement(iconOption.icon as React.ReactElement, { size: 28 })}
+                </div>
+                
+                {/* Icon name tooltip on hover */}
+                <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity z-10 ${
+                  isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-800 text-white'
+                }`}>
+                  {iconOption.name}
+                </div>
+              </button>
+            ))}
+          </div>
+          
+          {filteredIcons.length === 0 && (
+            <div className="text-center py-8 opacity-60">
+              <p>No icons found matching "{searchTerm}"</p>
+              <button 
+                onClick={() => setSearchTerm('')}
+                className="text-blue-600 hover:underline text-sm mt-2"
+              >
+                Clear search
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex space-x-3 mt-6">
+          <button
+            onClick={onCancel}
+            className={`flex-1 px-4 py-2 rounded-lg transition-all ${
+              isDarkMode 
+                ? 'bg-slate-700 text-gray-300 hover:bg-slate-600' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            {t.cancel}
+          </button>
+          <button
+            onClick={handleSave}
+            disabled={!label.trim()}
+            className={`flex-1 px-4 py-2 rounded-lg transition-all ${
+              !label.trim()
+                ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            {t.addCardButton}
+          </button>
         </div>
       </div>
     </div>
