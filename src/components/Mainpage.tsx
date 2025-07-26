@@ -979,14 +979,22 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
 
   const filteredIcons = getFilteredIcons();
 
-  // Helper function to safely clone icons with size prop
-  const cloneIconWithSize = (icon: React.ReactNode, size: number) => {
+  // Helper function to safely render icons with appropriate sizing
+  const renderIconWithSize = (icon: React.ReactNode, size: number) => {
     const element = icon as React.ReactElement;
-    // Check if it's a Lucide icon (has props.size) or emoji div (doesn't)
+    
+    // If it's an emoji div, return as-is
     if (element.type === 'div') {
-      return element; // Return emoji divs as-is
+      return element;
     }
-    return React.cloneElement(element, { size });
+    
+    // For Lucide icons, try to clone with size prop
+    try {
+      return React.cloneElement(element, { size } as any);
+    } catch (error) {
+      // Fallback: return original element if cloning fails
+      return element;
+    }
   };
 
   const handleSave = () => {
@@ -1033,7 +1041,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
             }`}>
               <div className="flex flex-col items-center space-y-2">
                 <div className="flex items-center justify-center">
-                  {cloneIconWithSize(selectedIcon.icon, 48)}
+                  {renderIconWithSize(selectedIcon.icon, 48)}
                 </div>
                 <span className="text-sm font-medium text-blue-600">{selectedIcon.name}</span>
               </div>
@@ -1101,7 +1109,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
                 title={iconOption.name}
               >
                 <div className="flex items-center justify-center">
-                  {cloneIconWithSize(iconOption.icon, 28)}
+                  {renderIconWithSize(iconOption.icon, 28)}
                 </div>
                 
                 {/* Icon name tooltip on hover */}
