@@ -1,6 +1,6 @@
 'use client'
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle, Brain, Plus, X, Save, Globe, Heart, Home, Star, Car, Phone, Music, Coffee, Book, Bed, SunIcon, Zap, Camera, Gift, Clock, MapPin, Thermometer, Volume2, Wifi, Battery, Settings, Shield, Lock, Key, Calendar, Mail, MessageCircle, Search, Download, Upload, Edit, Trash2, Copy, Share2, Eye, EyeOff, ChevronLeft, ChevronRight, Play, Pause, Stop, SkipBack, SkipForward, Repeat, Shuffle, Volume, VolumeX, Mic, MicOff, Video, VideoOff, Image, FileText, Folder, Archive, Cloud, Server, Database, Code, Terminal, Cpu, HardDrive, Monitor, Smartphone, Tablet, Laptop, Printer, Keyboard, Mouse, Headphones, Speaker, Gamepad2, Joystick, Trophy, Award, Medal, Flag, Target, Compass, Map, Route, Plane, Train, Bus, Bike, Fuel, Parking, Construction, Tool, Wrench, Hammer, Scissors, Ruler, PaintBucket, Brush, Palette, Pipette, Layers, Square, Circle, Triangle, Hexagon, Star as StarIcon } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle, Brain, Plus, X, Globe, Heart, Home, Star, Car, Phone, Music, Coffee, Book, Bed, Sun as SunIcon, Zap, Camera, Gift, Clock, MapPin, Thermometer, Mic, MessageCircle, Play, Gamepad2, Bus, Bike, Plane, Train, Key } from 'lucide-react';
 
 interface Option {
   id: string;
@@ -307,7 +307,6 @@ const CommunicationInterface: React.FC = () => {
   }, [currentLanguage]);
   const [isConnected, setIsConnected] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [device, setDevice] = useState<BluetoothDevice | null>(null);
   const [activeSelection, setActiveSelection] = useState<string | null>(null);
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
   const [menuActive, setMenuActive] = useState(false);
@@ -450,9 +449,6 @@ const CommunicationInterface: React.FC = () => {
     { name: 'Important', icon: <div className="text-3xl">⚠️</div> }
   ];
 
-  // Available colors for new cards - simplified to just one default
-  const defaultColor = { name: 'Blue', color: 'bg-blue-500', lightColor: 'bg-blue-400' };
-
   const playSound = useCallback((soundFile: string) => {
     try {
       const audio = new Audio(`./sounds/${soundFile}`);
@@ -543,7 +539,6 @@ const CommunicationInterface: React.FC = () => {
       await characteristic.startNotifications();
       characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
 
-      setDevice(device);
       setIsConnected(true);
       setIsConnecting(false);
 
@@ -555,7 +550,7 @@ const CommunicationInterface: React.FC = () => {
       setConnectionError(error instanceof Error ? error.message : t.connectionFailed);
       return false;
     }
-  }, [handleNotifications, t]);
+  }, [handleNotifications, handleDisconnection, t]);
 
   const handleDisconnection = useCallback(() => {
     setIsConnected(false);
@@ -590,7 +585,6 @@ const CommunicationInterface: React.FC = () => {
     } catch (error) {
       console.error("Error during disconnection:", error);
     } finally {
-      setDevice(null);
       setIsConnected(false);
       setIsConnecting(false);
       setMenuActive(false);
@@ -1110,7 +1104,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
           
           {filteredIcons.length === 0 && (
             <div className="text-center py-8 opacity-60">
-              <p>No icons found matching "{searchTerm}"</p>
+              <p>No icons found matching &quot;{searchTerm}&quot;</p>
               <button 
                 onClick={() => setSearchTerm('')}
                 className="text-blue-600 hover:underline text-sm mt-2"
