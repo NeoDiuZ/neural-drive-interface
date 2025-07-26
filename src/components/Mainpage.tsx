@@ -510,6 +510,12 @@ const CommunicationInterface: React.FC = () => {
     }
   }, [currentMenuIndex, menuActive, options, playSound]); // Add options to dependency array
 
+  const handleDisconnection = useCallback(() => {
+    setIsConnected(false);
+    setMenuActive(false);
+    setCurrentMenuIndex(0);
+  }, []);
+
   const connectToDevice = useCallback(async () => {
     try {
       setIsConnecting(true);
@@ -551,12 +557,6 @@ const CommunicationInterface: React.FC = () => {
       return false;
     }
   }, [handleNotifications, handleDisconnection, t]);
-
-  const handleDisconnection = useCallback(() => {
-    setIsConnected(false);
-    setMenuActive(false);
-    setCurrentMenuIndex(0);
-  }, []);
 
   const disconnectDevice = useCallback(async () => {
     try {
