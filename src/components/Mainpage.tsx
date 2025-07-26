@@ -990,8 +990,8 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
     
     // For Lucide icons, try to clone with size prop
     try {
-      return React.cloneElement(element, { size } as any);
-    } catch (error) {
+      return React.cloneElement(element, { size } as Record<string, unknown>);
+    } catch (_error) {
       // Fallback: return original element if cloning fails
       return element;
     }
