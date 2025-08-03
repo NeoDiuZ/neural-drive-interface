@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle, Brain, Plus, X, Globe, Heart, Home, Star, Car, Phone, Music, Coffee, Book, Bed, Sun as SunIcon, Zap, Camera, Gift, Clock, MapPin, Thermometer, Mic, MessageCircle, Play, Gamepad2, Bus, Bike, Plane, Key } from 'lucide-react';
+import { Utensils, Users, Droplets, Navigation, Sun, Moon, WifiOff, HelpCircle, Brain, Plus, X, Globe, Heart, Home, Star, Car, Phone, Music, Coffee, Bed, Sun as SunIcon, Zap, Camera, Gift, Clock, MapPin, Thermometer, Mic, MessageCircle, Play, Bus, Bike, Plane, Key, Building2, Stethoscope, Users2, Briefcase, GraduationCap, Dumbbell, Pill, Frown, Smile, CloudRain, AlertTriangle, Activity, GamepadIcon, Monitor } from 'lucide-react';
 
 interface Option {
   id: string;
@@ -347,7 +347,7 @@ const CommunicationInterface: React.FC = () => {
     {
       id: 'television',
       label: t.television,
-      icon: <div className="text-3xl">📺</div>,
+      icon: <Monitor size={40} strokeWidth={1.5} />,
       color: 'bg-indigo-500',
       lightColor: 'bg-indigo-400',
       soundFile: 'television.mp3'
@@ -393,12 +393,15 @@ const CommunicationInterface: React.FC = () => {
     
     // People & Social
     { name: 'People', icon: <Users size={40} strokeWidth={1.5} /> },
-    { name: 'Family', icon: <div className="text-3xl">👨‍👩‍👧‍👦</div> },
-    { name: 'Doctor', icon: <div className="text-3xl">👨‍⚕️</div> },
+    { name: 'Family', icon: <Users2 size={40} strokeWidth={1.5} /> },
+    { name: 'Doctor', icon: <Stethoscope size={40} strokeWidth={1.5} /> },
+    { name: 'Phone', icon: <Phone size={40} strokeWidth={1.5} /> },
+    { name: 'Message', icon: <MessageCircle size={40} strokeWidth={1.5} /> },
+    { name: 'Speak', icon: <Mic size={40} strokeWidth={1.5} /> },
     
     // Places
     { name: 'Home', icon: <Home size={40} strokeWidth={1.5} /> },
-    { name: 'Hospital', icon: <div className="text-3xl">🏥</div> },
+    { name: 'Hospital', icon: <Building2 size={40} strokeWidth={1.5} /> },
     { name: 'Location', icon: <MapPin size={40} strokeWidth={1.5} /> },
     
     // Transportation
@@ -407,28 +410,22 @@ const CommunicationInterface: React.FC = () => {
     { name: 'Bus', icon: <Bus size={40} strokeWidth={1.5} /> },
     { name: 'Bike', icon: <Bike size={40} strokeWidth={1.5} /> },
     
-    // Communication
-    { name: 'Phone', icon: <Phone size={40} strokeWidth={1.5} /> },
-    { name: 'Message', icon: <MessageCircle size={40} strokeWidth={1.5} /> },
-    { name: 'Speak', icon: <Mic size={40} strokeWidth={1.5} /> },
-    
-    // Entertainment
-    { name: 'Music', icon: <Music size={40} strokeWidth={1.5} /> },
-    { name: 'Game', icon: <Gamepad2 size={40} strokeWidth={1.5} /> },
-    { name: 'Play', icon: <Play size={40} strokeWidth={1.5} /> },
-    
     // Health & Emotions
-    { name: 'Medicine', icon: <div className="text-3xl">💊</div> },
-    { name: 'Pain', icon: <div className="text-3xl">😣</div> },
-    { name: 'Happy', icon: <div className="text-3xl">😊</div> },
-    { name: 'Sad', icon: <div className="text-3xl">😢</div> },
-    { name: 'Tired', icon: <div className="text-3xl">😴</div> },
+    { name: 'Medicine', icon: <Pill size={40} strokeWidth={1.5} /> },
+    { name: 'Pain', icon: <Frown size={40} strokeWidth={1.5} /> },
+    { name: 'Happy', icon: <Smile size={40} strokeWidth={1.5} /> },
+    { name: 'Sad', icon: <Frown size={40} strokeWidth={1.5} /> },
+    { name: 'Tired', icon: <Activity size={40} strokeWidth={1.5} /> },
     
     // Activities
     { name: 'Sleep', icon: <Bed size={40} strokeWidth={1.5} /> },
-    { name: 'Work', icon: <div className="text-3xl">💼</div> },
-    { name: 'Study', icon: <Book size={40} strokeWidth={1.5} /> },
-    { name: 'Exercise', icon: <div className="text-3xl">🏃</div> },
+    { name: 'Work', icon: <Briefcase size={40} strokeWidth={1.5} /> },
+    { name: 'Study', icon: <GraduationCap size={40} strokeWidth={1.5} /> },
+    { name: 'Exercise', icon: <Dumbbell size={40} strokeWidth={1.5} /> },
+    { name: 'Music', icon: <Music size={40} strokeWidth={1.5} /> },
+    { name: 'Game', icon: <GamepadIcon size={40} strokeWidth={1.5} /> },
+    { name: 'Play', icon: <Play size={40} strokeWidth={1.5} /> },
+    { name: 'Television', icon: <Monitor size={40} strokeWidth={1.5} /> },
     
     // Objects & Tools
     { name: 'Clock', icon: <Clock size={40} strokeWidth={1.5} /> },
@@ -438,15 +435,15 @@ const CommunicationInterface: React.FC = () => {
     
     // Weather & Environment
     { name: 'Sun', icon: <SunIcon size={40} strokeWidth={1.5} /> },
-    { name: 'Cold', icon: <div className="text-3xl">❄️</div> },
-    { name: 'Rain', icon: <div className="text-3xl">🌧️</div> },
+    { name: 'Cold', icon: <CloudRain size={40} strokeWidth={1.5} /> },
+    { name: 'Rain', icon: <CloudRain size={40} strokeWidth={1.5} /> },
     { name: 'Temperature', icon: <Thermometer size={40} strokeWidth={1.5} /> },
     
     // Generic/Important
     { name: 'Heart', icon: <Heart size={40} strokeWidth={1.5} /> },
     { name: 'Star', icon: <Star size={40} strokeWidth={1.5} /> },
     { name: 'Emergency', icon: <Zap size={40} strokeWidth={1.5} /> },
-    { name: 'Important', icon: <div className="text-3xl">⚠️</div> }
+    { name: 'Important', icon: <AlertTriangle size={40} strokeWidth={1.5} /> }
   ];
 
   const playSound = useCallback((soundFile: string) => {
@@ -939,7 +936,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
     activities: { 
       name: 'Activities', 
       icons: availableIcons.filter(icon => 
-        ['Sleep', 'Work', 'Study', 'Exercise', 'Music', 'Game', 'Play'].includes(icon.name)
+        ['Sleep', 'Work', 'Study', 'Exercise', 'Music', 'Game', 'Play', 'Television'].includes(icon.name)
       )
     },
     objects: { 
@@ -983,11 +980,6 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
   const renderIconWithSize = (icon: React.ReactNode, size: number) => {
     const element = icon as React.ReactElement;
     
-    // If it's an emoji div, return as-is
-    if (element.type === 'div') {
-      return element;
-    }
-    
     // For Lucide icons, try to clone with size prop
     try {
       return React.cloneElement(element, { size } as Record<string, unknown>);
@@ -1014,7 +1006,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
 
   return (
     <div className={`fixed inset-0 flex items-center justify-center z-50 p-4 ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/80'} backdrop-blur-sm`}>
-      <div className={`${isDarkMode ? 'bg-slate-800 text-white border-slate-600' : 'bg-white text-gray-900 border-gray-200'} rounded-xl p-6 w-[480px] border-2 shadow-xl max-h-[90vh] overflow-hidden flex flex-col`}>
+      <div className={`${isDarkMode ? 'bg-slate-800 text-white border-slate-600' : 'bg-white text-gray-900 border-gray-200'} rounded-xl p-4 sm:p-6 w-full max-w-md sm:max-w-lg lg:max-w-xl border-2 shadow-xl max-h-[90vh] overflow-hidden flex flex-col`}>
         <h2 className="text-lg font-bold mb-4 text-center">{t.addCommunicationCard}</h2>
         
         {/* Label Input */}
@@ -1023,7 +1015,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
             type="text"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
-            className={`w-full px-3 py-3 border rounded-lg text-center text-lg ${
+            className={`w-full px-3 py-2 sm:py-3 border rounded-lg text-center text-base sm:text-lg ${
               isDarkMode 
                 ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' 
                 : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -1036,12 +1028,12 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         <div className="mb-6">
           <p className="text-sm text-center mb-3 opacity-70">Selected Icon:</p>
           <div className="flex justify-center">
-            <div className={`p-6 rounded-xl border-2 border-blue-500 ${
+            <div className={`p-4 sm:p-6 rounded-xl border-2 border-blue-500 ${
               isDarkMode ? 'bg-blue-900/20' : 'bg-blue-50'
             }`}>
               <div className="flex flex-col items-center space-y-2">
                 <div className="flex items-center justify-center">
-                  {renderIconWithSize(selectedIcon.icon, 48)}
+                  {renderIconWithSize(selectedIcon.icon, 40)}
                 </div>
                 <span className="text-sm font-medium text-blue-600">{selectedIcon.name}</span>
               </div>
@@ -1066,12 +1058,12 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
 
         {/* Category Tabs */}
         <div className="mb-4">
-          <div className="flex flex-wrap gap-1 max-h-20 overflow-y-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 max-h-32 overflow-y-auto">
             {Object.entries(iconCategories).map(([key, category]) => (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`px-3 py-1 rounded-lg text-xs transition-all ${
+                className={`px-2 py-2 rounded-lg text-xs transition-all whitespace-nowrap ${
                   selectedCategory === key
                     ? 'bg-blue-600 text-white'
                     : isDarkMode
@@ -1092,14 +1084,14 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
           </p>
           
           {/* Icon grid */}
-          <div className="grid grid-cols-6 gap-3 max-h-64 overflow-y-auto p-2 border rounded-lg bg-opacity-50" style={{
+          <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3 max-h-64 overflow-y-auto p-2 border rounded-lg bg-opacity-50" style={{
             backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.3)' : 'rgba(248, 250, 252, 0.5)'
           }}>
             {filteredIcons.map((iconOption, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedIcon(iconOption)}
-                className={`p-3 rounded-lg border-2 transition-all hover:scale-110 group relative ${
+                className={`p-2 sm:p-3 rounded-lg border-2 transition-all hover:scale-110 group relative ${
                   selectedIcon.name === iconOption.name
                     ? 'border-blue-500 bg-blue-50 scale-105 shadow-lg'
                     : isDarkMode
@@ -1109,7 +1101,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
                 title={iconOption.name}
               >
                 <div className="flex items-center justify-center">
-                  {renderIconWithSize(iconOption.icon, 28)}
+                  {renderIconWithSize(iconOption.icon, 24)}
                 </div>
                 
                 {/* Icon name tooltip on hover */}
@@ -1136,7 +1128,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex space-x-3 mt-6">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-6">
           <button
             onClick={onCancel}
             className={`flex-1 px-4 py-2 rounded-lg transition-all ${
