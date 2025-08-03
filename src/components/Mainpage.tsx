@@ -1006,11 +1006,11 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
 
   return (
     <div className={`fixed inset-0 flex items-center justify-center z-50 p-4 ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/80'} backdrop-blur-sm`}>
-      <div className={`${isDarkMode ? 'bg-slate-800 text-white border-slate-600' : 'bg-white text-gray-900 border-gray-200'} rounded-xl p-4 sm:p-6 w-full max-w-md sm:max-w-lg lg:max-w-xl border-2 shadow-xl max-h-[90vh] overflow-hidden flex flex-col`}>
-        <h2 className="text-lg font-bold mb-4 text-center">{t.addCommunicationCard}</h2>
+      <div className={`${isDarkMode ? 'bg-slate-800 text-white border-slate-600' : 'bg-white text-gray-900 border-gray-200'} rounded-xl p-4 sm:p-6 w-full max-w-md sm:max-w-lg lg:max-w-xl border-2 shadow-xl max-h-[90vh] flex flex-col`}>
+        <h2 className="text-lg font-bold mb-4 text-center flex-shrink-0">{t.addCommunicationCard}</h2>
         
         {/* Label Input */}
-        <div className="mb-6">
+        <div className="mb-6 flex-shrink-0">
           <input
             type="text"
             value={label}
@@ -1025,7 +1025,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Selected Icon Preview */}
-        <div className="mb-6">
+        <div className="mb-6 flex-shrink-0">
           <p className="text-sm text-center mb-3 opacity-70">Selected Icon:</p>
           <div className="flex justify-center">
             <div className={`p-4 sm:p-6 rounded-xl border-2 border-blue-500 ${
@@ -1042,7 +1042,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Search Bar */}
-        <div className="mb-4">
+        <div className="mb-4 flex-shrink-0">
           <input
             type="text"
             value={searchTerm}
@@ -1057,7 +1057,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Category Tabs */}
-        <div className="mb-4">
+        <div className="mb-4 flex-shrink-0">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 max-h-32 overflow-y-auto">
             {Object.entries(iconCategories).map(([key, category]) => (
               <button
@@ -1078,8 +1078,8 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Icon Selection */}
-        <div className="flex-1 min-h-0">
-          <p className="text-sm text-center mb-3 opacity-70">
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <p className="text-sm text-center mb-3 opacity-70 flex-shrink-0">
             {filteredIcons.length} icons in {iconCategories[selectedCategory as CategoryKey]?.name || 'All'}
           </p>
           
@@ -1128,7 +1128,7 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-6">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-6 flex-shrink-0">
           <button
             onClick={onCancel}
             className={`flex-1 px-4 py-2 rounded-lg transition-all ${
