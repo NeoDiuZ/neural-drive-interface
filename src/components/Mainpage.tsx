@@ -1058,12 +1058,12 @@ const AddCardModal: React.FC<AddCardModalProps> = ({
 
         {/* Category Tabs */}
         <div className="mb-4 flex-shrink-0">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 max-h-32 overflow-y-auto">
+          <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
             {Object.entries(iconCategories).map(([key, category]) => (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`px-2 py-2 rounded-lg text-xs transition-all whitespace-nowrap ${
+                className={`px-3 py-2 rounded-lg text-xs transition-all whitespace-nowrap ${
                   selectedCategory === key
                     ? 'bg-blue-600 text-white'
                     : isDarkMode
